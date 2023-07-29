@@ -12,6 +12,7 @@ List of ASP.NET techniques used in this project:
 
 - MVC
 - SOLID Principles
-- Dependency Injection
 - HTTP Connection
 - xUnit Test
+- Clean Architecture
+- DTO, Domain model, Dependency Injection
