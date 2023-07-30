@@ -1,4 +1,4 @@
-﻿namespace ServiceContract;
+﻿namespace Service;
 
 public class Class1
 {
