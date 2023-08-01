@@ -1,7 +1,7 @@
 ﻿using ServiceContracts;
 using ServiceContracts.DTO;
 using Entities;
-
+using Services.Helpers;
 namespace Services;
 
 public class PersonsService : IPersonsService
@@ -33,11 +33,8 @@ public class PersonsService : IPersonsService
             throw new ArgumentNullException(nameof(personAddRequest));
         }
 
-        //Validate PersonName
-        if (string.IsNullOrEmpty(personAddRequest.PersonName))
-        {
-            throw new ArgumentException("PersonName can't be blank");
-        }
+        //DTO Validate 
+        ValidationHelper.ModelValidation(personAddRequest);
 
         //convert personAddRequest into Person type
         Person person = personAddRequest.ToPerson();
