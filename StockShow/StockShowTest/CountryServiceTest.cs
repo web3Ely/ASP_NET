@@ -106,11 +106,58 @@ public class CountryServiceTest
 
         List<CountryResponse> actualCountryResponseList = _countryService.GetAllCountries();
 
-        //read each element from countries_list_from_add_country
+        //Assert
         foreach (CountryResponse expected_country in countries_list_from_add_country)
         {
             Assert.Contains(expected_country, actualCountryResponseList);
         }
+    }
+    #endregion
+
+    #region GetCountryByCountryID
+    /// <summary>
+    /// It has two tests for CountriesService method: public CountryResponse? GetCountryByCountryID(Guid? countryID)
+    ///     1. To test if return type is null if Guid is null 
+    ///     2. To test if return is valid when Guid is valid
+    ///     3. To test if return is valid when Guid is invalid
+    /// </summary>
+    [Fact]
+    public void GetCountryByCountryID_NullCountryID()
+    {
+        //Arrange
+        Guid? countrID = null;
+
+        //Act
+        CountryResponse? country_response_from_get_method = _countryService.GetCountryByCountryID(countrID);
+
+
+        //Assert
+        Assert.Null(country_response_from_get_method);
+    }
+
+
+    [Fact]
+    public void GetCountryByCountryID_ValidCountryID()
+    {
+        //Arrange
+        CountryAddRequest? country_add_request = new CountryAddRequest() { CountryName = "China" };
+        CountryResponse country_response_from_add = _countryService.AddCountry(country_add_request);
+
+        //Act
+        CountryResponse? country_response_from_get = _countryService.GetCountryByCountryID(country_response_from_add.CountryID);
+
+        //Assert
+        Assert.Equal(country_response_from_add, country_response_from_get);
+    }
+
+    [Fact]
+    public void GetCountryByCountryID_InvalidCountryID()
+    {
+        //Arrange and Act
+        CountryResponse? country_response_from_get = _countryService.GetCountryByCountryID(Guid.Empty);
+
+        //Assert
+        Assert.Null(country_response_from_get);
     }
     #endregion
 
