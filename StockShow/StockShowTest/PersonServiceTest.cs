@@ -17,8 +17,8 @@ public class PersonServiceTest
     //constructor
     public PersonServiceTest(ITestOutputHelper output)
     {
-        _personService = new PersonsService();
-        _countriesService = new CountriesService();
+        _personService = new PersonsService(false);
+        _countriesService = new CountriesService(false);
         _testOutputHelper = output;
     }
 

@@ -12,7 +12,7 @@ public class CountryServiceTest
     private readonly ICountriesService _countryService;
     public CountryServiceTest()
     {
-        _countryService = new CountriesService();
+        _countryService = new CountriesService(false);
     }
 
     #region AddCountry
